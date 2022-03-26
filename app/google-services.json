@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1081667191541",
+    "project_id": "tutorialfirebase-729ee",
+    "storage_bucket": "tutorialfirebase-729ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081667191541:android:6466a8d246ddaf309bfbbc",
+        "android_client_info": {
+          "package_name": "com.personal.splashscreen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081667191541-je8s5trct0c796hdt0eble95in81uh0k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuuH5KocxEKL0TzEKTGc6FC_vbixFtYQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081667191541-je8s5trct0c796hdt0eble95in81uh0k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

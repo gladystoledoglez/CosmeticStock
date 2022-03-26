@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Margins-->
+    <dimen name="none">0dp</dimen>
+    <dimen name="smallest_dimen">2dp</dimen>
+    <dimen name="small_dimen">4dp</dimen>
+    <dimen name="half_default_margin">8dp</dimen>
+    <dimen name="default_margin">16dp</dimen>
+
+    <!--Sizes-->
+    <dimen name="image_size">24dp</dimen>
+    <dimen name="image_button_size">48dp</dimen>
+
+</resources>

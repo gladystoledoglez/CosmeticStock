@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add">Adicionar</string>
+    <string name="product">Produto</string>
+    <string name="cost">Custo:</string>
+    <string name="sale">Venda:</string>
+    <string name="gain">Lucro:</string>
+    <string name="waste">Perda:</string>
+    <string name="select_all">Selecionar Todos</string>
+    <string name="active">Ativar</string>
+    <string name="inactive">Desativar</string>
+    <string name="search_product">Pesquisar Produto</string>
+    <string name="delete">Excluir</string>
+    <string name="save">Salvar</string>
+    <string name="cancel">Recursar</string>
+    <string name="empty_fields_warning">Deve inserir todos os campos requeridos</string>
+</resources>

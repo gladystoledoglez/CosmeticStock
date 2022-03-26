@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="pink_50">#FCE4EC</color>
+    <color name="pink_100">#F8BBD0</color>
+    <color name="pink_200">#F48FB1</color>
+    <color name="pink_300">#F06292</color>
+    <color name="pink_400">#EC407A</color>
+    <color name="pink_alpha_400">#F50057</color>
+    <color name="pink_alpha_100">#FF80AB</color>
+    <color name="green_500">#4CAF50</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="holo_red_dark">@android:color/holo_red_dark</color>
+
+    <color name="background">#F5F5F5</color>
+    <color name="disable_text">#DCDCDC</color>
+
+    <color name="lyt_header_background">@color/pink_50</color>
+    <color name="gain">@color/green_500</color>
+    <color name="waste">@color/holo_red_dark</color>
+    <color name="sc_active">@color/pink_alpha_400</color>
+    <color name="btn_add">@color/pink_alpha_100</color>
+    <color name="btn_save">@color/pink_alpha_100</color>
+    <color name="btn_cancel">@color/pink_alpha_400</color>
+
+</resources>

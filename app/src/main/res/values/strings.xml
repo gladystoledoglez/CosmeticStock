@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name" translatable="false">Cosmetics Stock</string>
+    <string name="add">Add</string>
+    <string name="product">Product</string>
+    <string name="cost">Cost:</string>
+    <string name="sale">Sale:</string>
+    <string name="gain">Gain:</string>
+    <string name="waste">Waste:</string>
+    <string name="select_all">Select All</string>
+    <string name="active">Active</string>
+    <string name="inactive">Inactive</string>
+    <string name="search_product">Search Product</string>
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="empty_fields_warning">You must input all required fields</string>
+</resources>

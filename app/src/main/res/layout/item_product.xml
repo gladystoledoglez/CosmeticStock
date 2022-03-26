@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="1dp"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="@dimen/small_dimen">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/small_dimen">
+
+        <TextView
+            android:id="@+id/tvProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/selector_text_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/product" />
+
+        <TextView
+            android:id="@+id/tvCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cost"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvProduct" />
+
+        <TextView
+            android:id="@+id/tvCostValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_dimen"
+            app:layout_constraintStart_toEndOf="@+id/tvCost"
+            app:layout_constraintTop_toBottomOf="@+id/tvProduct"
+            tools:text="00.00" />
+
+        <TextView
+            android:id="@+id/tvSale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sale"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCost" />
+
+        <TextView
+            android:id="@+id/tvSaleValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_dimen"
+            app:layout_constraintStart_toEndOf="@+id/tvSale"
+            app:layout_constraintTop_toBottomOf="@+id/tvCostValue"
+            tools:text="00.00" />
+
+        <TextView
+            android:id="@+id/tvGain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gain"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSale" />
+
+        <TextView
+            android:id="@+id/tvGainValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_dimen"
+            app:layout_constraintStart_toEndOf="@+id/tvGain"
+            app:layout_constraintTop_toBottomOf="@+id/tvSaleValue"
+            tools:text="00.00" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/scActive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/small_dimen"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvGainValue"
+            app:layout_constraintEnd_toStartOf="@+id/ibDelete"
+            app:layout_constraintTop_toTopOf="@+id/tvCostValue" />
+
+        <ImageButton
+            android:id="@+id/ibDelete"
+            android:layout_width="@dimen/image_button_size"
+            android:layout_height="@dimen/image_button_size"
+            android:layout_marginEnd="@dimen/smallest_dimen"
+            android:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/tvGainValue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvCostValue"
+            app:srcCompat="@drawable/ic_delete"
+            android:contentDescription="@string/delete" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
