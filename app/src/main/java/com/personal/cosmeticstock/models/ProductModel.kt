@@ -34,6 +34,13 @@ data class ProductModel(
             values.cost.isMoreThanZero() &&
             values.sale.isMoreThanZero()
 
+    fun containsInput(filterText: String): Boolean {
+        return name?.contains(filterText) == true ||
+                values.cost.toString().contains(filterText) ||
+                values.sale.toString().contains(filterText) ||
+                values.gain.toString().contains(filterText)
+    }
+
     companion object {
         val DIFF_ITEM_CALLBACK = object : DiffUtil.ItemCallback<ProductModel>() {
             override fun areItemsTheSame(oldItem: ProductModel, newItem: ProductModel): Boolean {

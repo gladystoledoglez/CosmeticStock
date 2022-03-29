@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.personal.cosmeticstock.DetailsActivity
@@ -50,11 +51,31 @@ class ProductsFragment : Fragment() {
         initObservers()
         initListeners()
         mainActivity.binding.fabAdd.setOnClickListener { onItemEdit(ProductModel()) }
+
+        val search = binding.lytHeader.svProduct
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(queryText: String?): Boolean {
+                filterAdapterBy(queryText)
+                return false
+            }
+
+            override fun onQueryTextChange(queryText: String?): Boolean {
+                filterAdapterBy(queryText)
+                return false
+            }
+        })
     }
 
     override fun onDestroy() {
         super.onDestroy()
         rvProducts?.adapter = null
+    }
+
+    private fun filterAdapterBy(text: String?) {
+        if (text.isNullOrEmpty())
+            viewModel.listProducts()
+        else
+            adapter.filter.filter(text)
     }
 
     private fun initObservers() {
@@ -100,7 +121,8 @@ class ProductsFragment : Fragment() {
         when (changeListType) {
             ChangeListType.ALL -> adapter.notifyItemRangeChanged(index, adapter.itemCount)
             ChangeListType.CURRENT -> adapter.notifyItemChanged(index)
-            else -> {}
+            else -> {
+            }
         }
         changeListType = ChangeListType.NONE
     }
