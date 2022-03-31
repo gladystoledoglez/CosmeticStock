@@ -12,7 +12,6 @@ import com.personal.cosmeticstock.DetailsActivity
 import com.personal.cosmeticstock.MainActivity
 import com.personal.cosmeticstock.ProductsListAdapter
 import com.personal.cosmeticstock.databinding.FragmentProductsBinding
-import com.personal.cosmeticstock.enums.ChangeListType
 import com.personal.cosmeticstock.extensions.orFalse
 import com.personal.cosmeticstock.extensions.orZero
 import com.personal.cosmeticstock.models.ProductModel
@@ -27,9 +26,9 @@ class ProductsFragment : Fragment() {
     private lateinit var mainActivity: MainActivity
 
     private val adapter by lazy {
-        ProductsListAdapter(::onItemEdit, ::onItemActive, viewModel::deleteProduct)
+        ProductsListAdapter(::onItemEdit, viewModel::activeProduct, viewModel::deleteProduct)
     }
-    private var changeListType = ChangeListType.NONE
+
     private var rvProducts: RecyclerView? = null
 
     override fun onCreateView(
@@ -71,6 +70,12 @@ class ProductsFragment : Fragment() {
         rvProducts?.adapter = null
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE)
+            viewModel.listProducts()
+    }
+
     private fun filterAdapterBy(text: String?) {
         if (text.isNullOrEmpty())
             viewModel.listProducts()
@@ -80,23 +85,18 @@ class ProductsFragment : Fragment() {
 
     private fun initObservers() {
         with(viewModel) {
+            totals.observe(viewLifecycleOwner) { setupHeader(it) }
             products.observe(viewLifecycleOwner) {
-                getTotals()
-                adapter.submitList(it.products) { setupListChanges(it.index) }
+                adapter.submitList(it.products) { getTotals() }
             }
             listProducts()
-            totals.observe(viewLifecycleOwner) { setupHeader(it) }
-            getTotals()
         }
     }
 
     private fun initListeners() {
         with(binding) {
             lytHeader.scActive.apply {
-                setOnClickListener {
-                    viewModel.activeProductsList(isChecked)
-                    changeListType = ChangeListType.ALL
-                }
+                setOnClickListener { viewModel.activeProductsList(isChecked) }
             }
             rvProducts.adapter = adapter
         }
@@ -117,28 +117,15 @@ class ProductsFragment : Fragment() {
         }
     }
 
-    private fun setupListChanges(index: Int) {
-        when (changeListType) {
-            ChangeListType.ALL -> adapter.notifyItemRangeChanged(index, adapter.itemCount)
-            ChangeListType.CURRENT -> adapter.notifyItemChanged(index)
-            else -> {
-            }
-        }
-        changeListType = ChangeListType.NONE
-    }
-
     private fun onItemEdit(item: ProductModel) {
         val intent = Intent(context, DetailsActivity::class.java)
-        intent.putExtra("ITEM", item)
-        startActivity(intent)
-    }
-
-    private fun onItemActive(item: ProductModel) {
-        viewModel.activeProduct(item)
-        changeListType = ChangeListType.CURRENT
+        intent.putExtra(ITEM_NAME, item)
+        startActivityForResult(intent, REQUEST_CODE)
     }
 
     companion object {
+        const val ITEM_NAME = "ITEM"
+        const val REQUEST_CODE = 935847621
         fun newInstance() = ProductsFragment()
     }
 }

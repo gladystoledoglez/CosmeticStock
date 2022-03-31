@@ -8,6 +8,7 @@ import com.personal.cosmeticstock.databinding.ActivityDetailsBinding
 import com.personal.cosmeticstock.extensions.orFalse
 import com.personal.cosmeticstock.extensions.orZero
 import com.personal.cosmeticstock.extensions.setCheckedText
+import com.personal.cosmeticstock.fragments.ProductsFragment.Companion.ITEM_NAME
 import com.personal.cosmeticstock.models.ProductModel
 import com.personal.cosmeticstock.repositories.ProductsRepository
 import com.personal.cosmeticstock.viewModels.ProductDetailsViewModel
@@ -24,7 +25,7 @@ class DetailsActivity : AppCompatActivity() {
         viewModel = ProductDetailsViewModel(
             ProductsRepository(ProductDatabase.initialize(this))
         )
-        val item = intent.getParcelableExtra<ProductModel>("ITEM")
+        val item = intent.getParcelableExtra<ProductModel>(ITEM_NAME)
         initializeComponentsFrom(item)
     }
 
