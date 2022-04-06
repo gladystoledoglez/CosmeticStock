@@ -5,7 +5,6 @@ import com.personal.cosmeticstock.extensions.isMoreThanZero
 import com.personal.cosmeticstock.extensions.orZero
 import com.personal.cosmeticstock.extensions.toInt
 import com.personal.cosmeticstock.models.ProductModel
-import com.personal.cosmeticstock.models.ProductsListModel
 import com.personal.cosmeticstock.models.TotalModel
 
 fun ProductEntity.toModel() = ProductModel(
@@ -29,12 +28,10 @@ fun ProductEntity.toTotalModel() = TotalModel(
 fun ProductModel.toEntity() = ProductEntity(
     id = id.orZero(),
     name = name.orEmpty(),
-    cost = values?.cost.orZero(),
-    sale = values?.sale.orZero(),
-    gain = values?.gain.orZero(),
+    cost = values.cost.orZero(),
+    sale = values.sale.orZero(),
+    gain = values.gain.orZero(),
     active = isActive.toInt()
 )
 
 fun List<ProductEntity>.toListModel() = map { it.toModel() }
-
-fun List<ProductModel>.toProductsListModel() = ProductsListModel(this)

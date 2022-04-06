@@ -38,7 +38,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tilName">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.personal.cosmeticstock.bases.CurrencyEditText
             android:id="@+id/tieCost"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -58,7 +58,7 @@
         app:layout_constraintStart_toStartOf="@+id/glVerticalCenter"
         app:layout_constraintTop_toTopOf="@+id/tilCost">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.personal.cosmeticstock.bases.CurrencyEditText
             android:id="@+id/tieSale"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

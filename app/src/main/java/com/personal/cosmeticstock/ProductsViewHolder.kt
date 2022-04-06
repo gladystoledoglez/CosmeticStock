@@ -3,6 +3,7 @@ package com.personal.cosmeticstock
 import androidx.recyclerview.widget.RecyclerView
 import com.personal.cosmeticstock.databinding.ItemProductBinding
 import com.personal.cosmeticstock.extensions.orFalse
+import com.personal.cosmeticstock.extensions.toCurrencyMaskedStr
 import com.personal.cosmeticstock.models.ProductModel
 import com.personal.cosmeticstock.models.TotalModel
 
@@ -16,8 +17,8 @@ class ProductsViewHolder(
     fun bind(item: ProductModel) {
         with(binding) {
             tvProduct.text = item.name
-            tvCostValue.text = item.values.cost.toString()
-            tvSaleValue.text = item.values.sale.toString()
+            tvCostValue.text = item.values.cost.toBigDecimal().toCurrencyMaskedStr()
+            tvSaleValue.text = item.values.sale.toBigDecimal().toCurrencyMaskedStr()
             scActive.isChecked = item.isActive.orFalse()
 
             itemView.setOnClickListener { onItemEdit(item) }
@@ -44,7 +45,7 @@ class ProductsViewHolder(
             tvGain.isEnabled = isEnabled
             tvGain.text = context.getString(values.getGainStringRes())
             tvGainValue.isEnabled = isEnabled
-            tvGainValue.text = values.gain.toString()
+            tvGainValue.text = values.gain.toBigDecimal().toCurrencyMaskedStr()
 
             val color = context.getColor(values.getGainColorRes(isEnabled))
             tvGain.setTextColor(color)

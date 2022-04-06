@@ -86,9 +86,7 @@ class ProductsFragment : Fragment() {
     private fun initObservers() {
         with(viewModel) {
             totals.observe(viewLifecycleOwner) { setupHeader(it) }
-            products.observe(viewLifecycleOwner) {
-                adapter.submitList(it.products) { getTotals() }
-            }
+            products.observe(viewLifecycleOwner) { adapter.submitList(it) { getTotals() } }
             listProducts()
         }
     }
