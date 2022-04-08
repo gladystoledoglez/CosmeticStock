@@ -5,13 +5,15 @@ import java.math.RoundingMode
 
 fun BigDecimal.rounded(): BigDecimal = setScale(Int.DECIMAL_PLACES, RoundingMode.HALF_UP)
 
-fun BigDecimal.orValue(value: BigDecimal) = this ?: value
+fun BigDecimal?.orValue(value: BigDecimal) = this ?: value
 
 fun BigDecimal?.orValue(value: Int): BigDecimal = this ?: value.toBigDecimal()
 
 fun BigDecimal?.orValue(value: Float): BigDecimal = this ?: value.toBigDecimal()
 
-fun BigDecimal?.orZero(): BigDecimal = orValue(0)
+fun BigDecimal?.orZero(): BigDecimal = orValue(BigDecimal.ZERO)
+
+fun BigDecimal?.isMoreThanZero() = orZero() > BigDecimal.ZERO
 
 fun BigDecimal?.toCurrencyMaskedStr() = toString().toCurrencyMaskedStr()
 

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.personal.cosmeticstock.DetailsActivity
@@ -13,7 +14,7 @@ import com.personal.cosmeticstock.MainActivity
 import com.personal.cosmeticstock.ProductsListAdapter
 import com.personal.cosmeticstock.databinding.FragmentProductsBinding
 import com.personal.cosmeticstock.extensions.orFalse
-import com.personal.cosmeticstock.extensions.orZero
+import com.personal.cosmeticstock.extensions.toCurrencyMaskedStr
 import com.personal.cosmeticstock.models.ProductModel
 import com.personal.cosmeticstock.models.TotalModel
 import com.personal.cosmeticstock.repositories.ProductsRepository
@@ -102,14 +103,14 @@ class ProductsFragment : Fragment() {
 
     private fun setupHeader(summary: TotalModel) {
         val isChecked = summary.isActiveCountEqualTo(adapter.itemCount).orFalse()
-        val gainColor = requireContext().getColor(summary.getGainColorRes(isChecked))
+        val gainColor = ContextCompat.getColor(requireContext(), summary.getGainColorRes(isChecked))
         val gainText = requireContext().getString(summary.getGainStringRes())
         binding.lytHeader.apply {
-            tvCostValue.text = summary.cost.orZero().toString()
-            tvSaleValue.text = summary.sale.orZero().toString()
+            tvCostValue.text = summary.cost.toCurrencyMaskedStr()
+            tvSaleValue.text = summary.sale.toCurrencyMaskedStr()
             tvGain.text = gainText
             tvGain.setTextColor(gainColor)
-            tvGainValue.text = summary.gain.toString()
+            tvGainValue.text = summary.gain.toCurrencyMaskedStr()
             tvGainValue.setTextColor(gainColor)
             scActive.isChecked = isChecked
         }

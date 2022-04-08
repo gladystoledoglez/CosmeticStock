@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.personal.cosmeticstock.database.ProductDatabase
 import com.personal.cosmeticstock.databinding.ActivityDetailsBinding
 import com.personal.cosmeticstock.extensions.orFalse
-import com.personal.cosmeticstock.extensions.orZero
 import com.personal.cosmeticstock.extensions.setCheckedText
+import com.personal.cosmeticstock.extensions.toCurrencyMaskedStr
 import com.personal.cosmeticstock.fragments.ProductsFragment.Companion.ITEM_NAME
 import com.personal.cosmeticstock.models.ProductModel
 import com.personal.cosmeticstock.repositories.ProductsRepository
@@ -33,8 +33,8 @@ class DetailsActivity : AppCompatActivity() {
         with(binding) {
             tieName.setText(item?.name.orEmpty())
             item?.values?.apply {
-                tieCost.setText(cost.orZero().toString())
-                tieSale.setText(sale.orZero().toString())
+                tieCost.setText(cost.toCurrencyMaskedStr())
+                tieSale.setText(sale.toCurrencyMaskedStr())
             }
 
             scActive.apply {

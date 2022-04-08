@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.personal.cosmeticstock.extensions.isMoreThanZero
 import com.personal.cosmeticstock.extensions.orFalse
 import com.personal.cosmeticstock.extensions.orZero
+import com.personal.cosmeticstock.extensions.toCurrencyBigDecimal
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -24,8 +25,12 @@ data class ProductModel(
     ) {
         name = editableName.toString()
         values = TotalModel(
-            cost = editableCost?.takeIf { it.isNotEmpty() }?.toString()?.toDouble().orZero(),
-            sale = editableSale?.takeIf { it.isNotEmpty() }?.toString()?.toDouble().orZero(),
+            cost = editableCost?.takeIf {
+                it.isNotEmpty()
+            }?.toString()?.toCurrencyBigDecimal().orZero(),
+            sale = editableSale?.takeIf {
+                it.isNotEmpty()
+            }?.toString()?.toCurrencyBigDecimal().orZero(),
         )
         isActive = isChecked
     }
