@@ -8,13 +8,14 @@ import com.personal.cosmeticstock.daos.ProductDao
 import com.personal.cosmeticstock.entities.ProductEntity
 
 @Database(entities = [ProductEntity::class], version = 1, exportSchema = false)
-abstract class ProductDatabase : RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
     abstract fun productDao(): ProductDao
 
     companion object {
-        private const val DAB_NAME = "product"
+        private const val DB_NAME = "cosmetics_stock_db"
+        const val PRODUCT_TABLE_NAME = "product_table"
         fun initialize(context: Context) = Room.databaseBuilder(
-            context, ProductDatabase::class.java, DAB_NAME
+            context, AppDatabase::class.java, DB_NAME
         ).build()
     }
 }

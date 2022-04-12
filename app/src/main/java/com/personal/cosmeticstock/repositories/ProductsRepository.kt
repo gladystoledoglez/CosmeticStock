@@ -1,6 +1,6 @@
 package com.personal.cosmeticstock.repositories
 
-import com.personal.cosmeticstock.database.ProductDatabase
+import com.personal.cosmeticstock.database.AppDatabase
 import com.personal.cosmeticstock.extensions.orFalse
 import com.personal.cosmeticstock.extensions.orZero
 import com.personal.cosmeticstock.mappers.toEntity
@@ -9,7 +9,7 @@ import com.personal.cosmeticstock.mappers.toTotalModel
 import com.personal.cosmeticstock.models.ProductModel
 import com.personal.cosmeticstock.models.TotalModel
 
-class ProductsRepository(private val database: ProductDatabase) {
+class ProductsRepository(private val database: AppDatabase) {
 
     private suspend fun getProductsBy(result: Long) = if (result >= 1)
         getProducts()

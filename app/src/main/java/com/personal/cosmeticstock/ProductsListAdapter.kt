@@ -11,7 +11,8 @@ import com.personal.cosmeticstock.models.ProductModel
 class ProductsListAdapter(
     private val onItemEdit: (item: ProductModel) -> Unit,
     private val onItemActive: (item: ProductModel) -> Unit,
-    private val onItemDelete: (item: ProductModel) -> Unit
+    private val onItemDelete: (item: ProductModel) -> Unit,
+    private val showResultsMessage: (isListEmpty: Boolean) -> Unit
 ) : ListAdapter<ProductModel, ProductsViewHolder>(ProductModel.DIFF_ITEM_CALLBACK), Filterable {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsViewHolder {
@@ -24,6 +25,16 @@ class ProductsListAdapter(
         holder.bind(item)
     }
 
+    override fun submitList(list: MutableList<ProductModel>?) {
+        super.submitList(list)
+        showResultsMessage(list.isNullOrEmpty())
+    }
+
+    override fun submitList(list: MutableList<ProductModel>?, commitCallback: Runnable?) {
+        super.submitList(list, commitCallback)
+        showResultsMessage(list.isNullOrEmpty())
+    }
+
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(filterText: CharSequence?): FilterResults {
@@ -33,7 +44,7 @@ class ProductsListAdapter(
             }
 
             override fun publishResults(filterText: CharSequence?, filterResults: FilterResults?) {
-                submitList(filterResults?.values as? List<ProductModel>?)
+                submitList(filterResults?.values as? MutableList<ProductModel>?)
             }
         }
     }

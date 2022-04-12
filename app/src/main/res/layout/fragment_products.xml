@@ -7,8 +7,9 @@
     android:background="@color/background"
     tools:context=".fragments.ProductsFragment">
 
-    <include layout="@layout/layout_header_products"
+    <include
         android:id="@+id/lytHeader"
+        layout="@layout/layout_header_products"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_margin"
@@ -21,11 +22,28 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/none"
         android:layout_margin="@dimen/default_margin"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/fab_button_size"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lytHeader"
         tools:listitem="@layout/item_product" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvMessage"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/none"
+        android:layout_margin="@dimen/default_margin"
+        android:text="@string/empty_results_message"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lytHeader" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

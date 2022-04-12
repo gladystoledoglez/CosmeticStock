@@ -5,13 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
+import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.personal.cosmeticstock.DetailsActivity
 import com.personal.cosmeticstock.MainActivity
 import com.personal.cosmeticstock.ProductsListAdapter
+import com.personal.cosmeticstock.R
 import com.personal.cosmeticstock.databinding.FragmentProductsBinding
 import com.personal.cosmeticstock.extensions.orFalse
 import com.personal.cosmeticstock.extensions.toCurrencyMaskedStr
@@ -27,7 +29,9 @@ class ProductsFragment : Fragment() {
     private lateinit var mainActivity: MainActivity
 
     private val adapter by lazy {
-        ProductsListAdapter(::onItemEdit, viewModel::activeProduct, viewModel::deleteProduct)
+        ProductsListAdapter(
+            ::onItemEdit, viewModel::activeProduct, viewModel::deleteProduct, ::showResultsMessage
+        )
     }
 
     private var rvProducts: RecyclerView? = null
@@ -87,7 +91,7 @@ class ProductsFragment : Fragment() {
     private fun initObservers() {
         with(viewModel) {
             totals.observe(viewLifecycleOwner) { setupHeader(it) }
-            products.observe(viewLifecycleOwner) { adapter.submitList(it) { getTotals() } }
+            products.observe(viewLifecycleOwner) { adapter.submitList(it.toMutableList()) { getTotals() } }
             listProducts()
         }
     }
@@ -112,6 +116,8 @@ class ProductsFragment : Fragment() {
             tvGain.setTextColor(gainColor)
             tvGainValue.text = summary.gain.toCurrencyMaskedStr()
             tvGainValue.setTextColor(gainColor)
+            tvGain.isVisible = isChecked
+            tvGainValue.isVisible = isChecked
             scActive.isChecked = isChecked
         }
     }
@@ -120,6 +126,14 @@ class ProductsFragment : Fragment() {
         val intent = Intent(context, DetailsActivity::class.java)
         intent.putExtra(ITEM_NAME, item)
         startActivityForResult(intent, REQUEST_CODE)
+    }
+
+    private fun showResultsMessage(isListEmpty: Boolean) {
+        with(binding) {
+            tvMessage.isVisible = isListEmpty
+            rvProducts.isVisible = !isListEmpty
+            tvMessage.text = getString(R.string.empty_results_message)
+        }
     }
 
     companion object {

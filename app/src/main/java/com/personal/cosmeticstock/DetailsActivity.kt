@@ -3,7 +3,7 @@ package com.personal.cosmeticstock
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.personal.cosmeticstock.database.ProductDatabase
+import com.personal.cosmeticstock.database.AppDatabase
 import com.personal.cosmeticstock.databinding.ActivityDetailsBinding
 import com.personal.cosmeticstock.extensions.orFalse
 import com.personal.cosmeticstock.extensions.setCheckedText
@@ -23,7 +23,7 @@ class DetailsActivity : AppCompatActivity() {
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ProductDetailsViewModel(
-            ProductsRepository(ProductDatabase.initialize(this))
+            ProductsRepository(AppDatabase.initialize(this))
         )
         val item = intent.getParcelableExtra<ProductModel>(ITEM_NAME)
         initializeComponentsFrom(item)
@@ -55,7 +55,7 @@ class DetailsActivity : AppCompatActivity() {
                     finish()
                 } else {
                     Toast.makeText(
-                        this@DetailsActivity, R.string.empty_fields_warning, Toast.LENGTH_LONG
+                        this@DetailsActivity, R.string.empty_fields_warning, Toast.LENGTH_SHORT
                     ).show()
                 }
             }

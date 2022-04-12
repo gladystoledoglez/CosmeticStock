@@ -14,4 +14,5 @@
     <string name="save">Guardar</string>
     <string name="cancel">Cancelar</string>
     <string name="empty_fields_warning">Debe insertar todos los campos requeridos</string>
+    <string name="empty_results_message">No existe ningún producto</string>
 </resources>
