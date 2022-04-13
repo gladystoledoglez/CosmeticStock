@@ -43,7 +43,7 @@ data class ProductModel(
         return name?.contains(filterText) == true ||
                 values.cost.toString().contains(filterText) ||
                 values.sale.toString().contains(filterText) ||
-                values.gain.toString().contains(filterText)
+                values.balance.toString().contains(filterText)
     }
 
     companion object {
@@ -56,7 +56,7 @@ data class ProductModel(
                 return oldItem.name == newItem.name &&
                         oldItem.values.cost.orZero() == newItem.values.cost.orZero() &&
                         oldItem.values.sale.orZero() == newItem.values.sale.orZero() &&
-                        oldItem.values.gain.orZero() == newItem.values.gain.orZero() &&
+                        oldItem.values.balance.orZero() == newItem.values.balance.orZero() &&
                         oldItem.isActive == newItem.isActive
             }
         }

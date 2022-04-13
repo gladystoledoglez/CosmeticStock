@@ -63,7 +63,7 @@
             tools:text="00.00" />
 
         <TextView
-            android:id="@+id/tvGain"
+            android:id="@+id/tvBalance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/gain"
@@ -72,11 +72,11 @@
             app:layout_constraintTop_toBottomOf="@+id/tvSale" />
 
         <TextView
-            android:id="@+id/tvGainValue"
+            android:id="@+id/tvBalanceValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/small_dimen"
-            app:layout_constraintStart_toEndOf="@+id/tvGain"
+            app:layout_constraintStart_toEndOf="@+id/tvBalance"
             app:layout_constraintTop_toBottomOf="@+id/tvSaleValue"
             tools:text="00.00" />
 
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/small_dimen"
             android:minHeight="48dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tvGainValue"
+            app:layout_constraintBottom_toBottomOf="@+id/tvBalanceValue"
             app:layout_constraintEnd_toStartOf="@+id/ibDelete"
             app:layout_constraintTop_toTopOf="@+id/tvCostValue" />
 
@@ -96,7 +96,7 @@
             android:layout_height="@dimen/image_button_size"
             android:layout_marginEnd="@dimen/smallest_dimen"
             android:backgroundTint="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/tvGainValue"
+            app:layout_constraintBottom_toBottomOf="@+id/tvBalanceValue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvCostValue"
             app:srcCompat="@drawable/ic_delete"

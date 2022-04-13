@@ -15,6 +15,8 @@ fun BigDecimal?.orZero(): BigDecimal = orValue(BigDecimal.ZERO)
 
 fun BigDecimal?.isMoreThanZero() = orZero() > BigDecimal.ZERO
 
+fun BigDecimal?.isZero() = orZero() == BigDecimal.ZERO.rounded()
+
 fun BigDecimal?.toCurrencyMaskedStr() = toString().toCurrencyMaskedStr()
 
 fun BigDecimal?.toCurrencyBigDecimal() = toString().toCurrencyBigDecimal()

@@ -43,14 +43,14 @@ class ProductsViewHolder(
             tvCostValue.isEnabled = isEnabled
             tvSale.isEnabled = isEnabled
             tvSaleValue.isEnabled = isEnabled
-            tvGain.isEnabled = isEnabled
-            tvGain.text = context.getString(values.getGainStringRes())
-            tvGainValue.isEnabled = isEnabled
-            tvGainValue.text = values.gain.toCurrencyMaskedStr()
+            tvBalance.isEnabled = isEnabled
+            tvBalance.text = context.getString(values.getBalanceStringRes())
+            tvBalanceValue.isEnabled = isEnabled
+            tvBalanceValue.text = values.balance.toCurrencyMaskedStr()
 
-            val color = ContextCompat.getColor(context, values.getGainColorRes(isEnabled))
-            tvGain.setTextColor(color)
-            tvGainValue.setTextColor(color)
+            val color = ContextCompat.getColor(context, values.getBalanceColorRes(isEnabled))
+            tvBalance.setTextColor(color)
+            tvBalanceValue.setTextColor(color)
         }
     }
 }

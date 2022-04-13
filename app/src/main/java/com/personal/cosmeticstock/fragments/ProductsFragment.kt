@@ -106,19 +106,21 @@ class ProductsFragment : Fragment() {
     }
 
     private fun setupHeader(summary: TotalModel) {
-        val isChecked = summary.isActiveCountEqualTo(adapter.itemCount).orFalse()
-        val gainColor = ContextCompat.getColor(requireContext(), summary.getGainColorRes(isChecked))
-        val gainText = requireContext().getString(summary.getGainStringRes())
+        val context = requireContext()
+        val isBalanceVisible = summary.isBalanceVisible()
+        val isAllChecked = summary.isActiveCountEqualTo(adapter.itemCount).orFalse()
+        val balanceColor = ContextCompat.getColor(context, summary.getBalanceColorRes())
+        val balanceText = context.getString(summary.getBalanceStringRes())
         binding.lytHeader.apply {
             tvCostValue.text = summary.cost.toCurrencyMaskedStr()
             tvSaleValue.text = summary.sale.toCurrencyMaskedStr()
-            tvGain.text = gainText
-            tvGain.setTextColor(gainColor)
-            tvGainValue.text = summary.gain.toCurrencyMaskedStr()
-            tvGainValue.setTextColor(gainColor)
-            tvGain.isVisible = isChecked
-            tvGainValue.isVisible = isChecked
-            scActive.isChecked = isChecked
+            tvBalance.text = balanceText
+            tvBalance.setTextColor(balanceColor)
+            tvBalanceValue.text = summary.balance.toCurrencyMaskedStr()
+            tvBalanceValue.setTextColor(balanceColor)
+            tvBalance.isVisible = isBalanceVisible
+            tvBalanceValue.isVisible = isBalanceVisible
+            scActive.isChecked = isAllChecked
         }
     }
 

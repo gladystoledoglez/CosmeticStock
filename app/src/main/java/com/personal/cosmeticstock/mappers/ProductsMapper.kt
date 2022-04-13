@@ -18,7 +18,7 @@ fun ProductEntity.toModel() = ProductModel(
 fun ProductEntity.toTotalModel() = TotalModel(
     cost = cost.orZero().toBigDecimal().rounded(),
     sale = sale.orZero().toBigDecimal().rounded(),
-    gain = gain.orZero().toBigDecimal().rounded(),
+    balance = gain.orZero().toBigDecimal().rounded(),
     activeCount = active.orZero()
 )
 
@@ -27,7 +27,7 @@ fun ProductModel.toEntity() = ProductEntity(
     name = name.orEmpty(),
     cost = values.cost.orZero().toDouble(),
     sale = values.sale.orZero().toDouble(),
-    gain = values.gain.orZero().toDouble(),
+    gain = values.balance.orZero().toDouble(),
     active = isActive.toInt()
 )
 
