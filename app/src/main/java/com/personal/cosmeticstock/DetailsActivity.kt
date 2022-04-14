@@ -23,7 +23,7 @@ class DetailsActivity : AppCompatActivity() {
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewModel = ProductDetailsViewModel(
-            ProductsRepository(AppDatabase.initialize(this))
+            ProductsRepository(AppDatabase.initialize(this).productDao())
         )
         val item = intent.getParcelableExtra<ProductModel>(ITEM_NAME)
         initializeComponentsFrom(item)

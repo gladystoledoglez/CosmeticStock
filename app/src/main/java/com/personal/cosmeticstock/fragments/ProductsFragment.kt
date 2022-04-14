@@ -45,7 +45,7 @@ class ProductsFragment : Fragment() {
         binding = FragmentProductsBinding.inflate(layoutInflater)
         mainActivity = (activity as MainActivity)
         viewModel = ProductsViewModel(
-            ProductsRepository(mainActivity.database)
+            ProductsRepository(mainActivity.database.productDao())
         )
         return binding.root
     }
