@@ -10,10 +10,10 @@ import java.math.BigDecimal
 
 @Parcelize
 data class TotalModel(
-    var cost: BigDecimal = BigDecimal.ZERO,
-    var sale: BigDecimal = BigDecimal.ZERO,
-    var balance: BigDecimal = BigDecimal.ZERO,
-    var activeCount: Int = 0,
+    val cost: BigDecimal = BigDecimal.ZERO,
+    val sale: BigDecimal = BigDecimal.ZERO,
+    val balance: BigDecimal = BigDecimal.ZERO,
+    val activeCount: Int = 0,
 ) : Parcelable {
     fun isActiveCountEqualTo(itemsCount: Int): Boolean {
         return isAnyActive() && activeCount.orZero() == itemsCount

@@ -1,39 +1,19 @@
 package com.personal.cosmeticstock.models
 
 import android.os.Parcelable
-import android.text.Editable
 import androidx.recyclerview.widget.DiffUtil
 import com.personal.cosmeticstock.extensions.isMoreThanZero
 import com.personal.cosmeticstock.extensions.orFalse
 import com.personal.cosmeticstock.extensions.orZero
-import com.personal.cosmeticstock.extensions.toCurrencyBigDecimal
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ProductModel(
-    var id: Int? = null,
-    var name: String? = null,
-    var values: TotalModel = TotalModel(),
-    var isActive: Boolean? = false
+    val id: Int? = null,
+    val name: String? = null,
+    val values: TotalModel = TotalModel(),
+    val isActive: Boolean? = false
 ) : Parcelable {
-
-    fun updateFrom(
-        editableName: Editable?,
-        editableCost: Editable?,
-        editableSale: Editable?,
-        isChecked: Boolean?
-    ) {
-        name = editableName.toString()
-        values = TotalModel(
-            cost = editableCost?.takeIf {
-                it.isNotEmpty()
-            }?.toString()?.toCurrencyBigDecimal().orZero(),
-            sale = editableSale?.takeIf {
-                it.isNotEmpty()
-            }?.toString()?.toCurrencyBigDecimal().orZero(),
-        )
-        isActive = isChecked
-    }
 
     fun isNotEmpty() = name?.isNotEmpty().orFalse() &&
             values.cost.isMoreThanZero() &&

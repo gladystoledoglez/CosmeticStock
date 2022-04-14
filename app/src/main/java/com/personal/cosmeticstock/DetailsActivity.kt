@@ -5,11 +5,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.personal.cosmeticstock.database.AppDatabase
 import com.personal.cosmeticstock.databinding.ActivityDetailsBinding
-import com.personal.cosmeticstock.extensions.orFalse
-import com.personal.cosmeticstock.extensions.setCheckedText
-import com.personal.cosmeticstock.extensions.toCurrencyMaskedStr
+import com.personal.cosmeticstock.extensions.*
 import com.personal.cosmeticstock.fragments.ProductsFragment.Companion.ITEM_NAME
 import com.personal.cosmeticstock.models.ProductModel
+import com.personal.cosmeticstock.models.TotalModel
 import com.personal.cosmeticstock.repositories.ProductsRepository
 import com.personal.cosmeticstock.viewModels.ProductDetailsViewModel
 
@@ -44,14 +43,16 @@ class DetailsActivity : AppCompatActivity() {
             }
 
             btnSave.setOnClickListener {
-                item?.updateFrom(
-                    tieName.text,
-                    tieCost.text,
-                    tieSale.text,
-                    scActive.isChecked
+                val updatedItem = item?.copy(
+                    name = tieName.text.toString(),
+                    values = TotalModel(
+                        cost = tieCost.text?.toCurrencyBigDecimal().orZero(),
+                        sale = tieSale.text?.toCurrencyBigDecimal().orZero(),
+                    ),
+                    isActive = scActive.isChecked
                 )
-                if (item?.isNotEmpty().orFalse()) {
-                    viewModel.saveProduct(item)
+                if (updatedItem?.isNotEmpty().orFalse()) {
+                    viewModel.saveProduct(updatedItem)
                     finish()
                 } else {
                     Toast.makeText(
